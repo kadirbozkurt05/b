@@ -5,6 +5,7 @@ import connectDB from './config/database';
 import resourceRoutes from './routes/resourceRoutes';
 import gameRoutes from './routes/gameRoutes';
 import examRoutes from './routes/examRoutes';
+import authRoutes from './routes/authRoutes';
 
 dotenv.config();
 
@@ -26,12 +27,13 @@ app.use(cors({
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true, // Enable cookies and HTTP Auth
+  credentials: true,
 }));
 
 app.use(express.json());
 
 // Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/resources', resourceRoutes);
 app.use('/api/games', gameRoutes);
 app.use('/api/exams', examRoutes);
