@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import connectDB from './config/database';
 import resourceRoutes from './routes/resourceRoutes';
 import gameRoutes from './routes/gameRoutes';
+import examRoutes from './routes/examRoutes';
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use(express.json());
 // Routes
 app.use('/api/resources', resourceRoutes);
 app.use('/api/games', gameRoutes);
+app.use('/api/exams', examRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
