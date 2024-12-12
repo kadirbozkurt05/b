@@ -27,7 +27,17 @@ export const createExam = async (req: Request, res: Response): Promise<void> => 
 
 export const getExams = async (req: Request, res: Response): Promise<void> => {
   try {
-    const exams = await Exam.find().sort({ createdAt: -1 });
+    const { grade } = req.query;
+    
+    // Create query object
+    const query: any = {};
+    
+    // Add grade filter if provided
+    if (grade) {
+      query.grade = parseInt(grade as string);
+    }
+
+    const exams = await Exam.find(query).sort({ createdAt: -1 });
     res.status(200).json(exams);
   } catch (error) {
     console.error('Error fetching exams:', error);

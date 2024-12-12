@@ -5,6 +5,6 @@ import { auth, checkRole } from '../middleware/auth';
 const router = Router();
 
 router.post('/', auth, checkRole(['admin', 'teacher']), createExam);
-router.get('/', auth, getExams);
+router.get('/', getExams);
 
 export default router;
