@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Resource from '../models/Resource';
-import Category from '../models/Category';
 import { uploadFileToFirebase } from '../utils/fileUpload';
+import Category from '../models/Category'
 
 export const createResource = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -95,6 +95,23 @@ export const getResources = async (req: Request, res: Response): Promise<void> =
     });
   } catch (error) {
     console.error('Error fetching resources:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+export const deleteResource = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const resource = await Resource.findByIdAndDelete(id);
+
+    if (!resource) {
+      res.status(404).json({ error: 'Resource not found' });
+      return;
+    }
+
+    res.status(200).json({ message: 'Resource deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting resource:', error);
     res.status(500).json({ error: 'Server error' });
   }
 };

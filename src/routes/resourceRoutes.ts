@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
-import { createResource, getResources } from '../controllers/resourceController';
+import { createResource, getResources, deleteResource } from '../controllers/resourceController';
+import { auth, checkRole } from '../middleware/auth';
 
 const router = Router();
 
@@ -13,7 +14,8 @@ const upload = multer({
   }
 });
 
-router.post('/', upload.single('file'), createResource);
+router.post('/', auth, checkRole(['admin', 'teacher']), upload.single('file'), createResource);
 router.get('/', getResources);
+router.delete('/:id', auth, checkRole(['admin', 'teacher']), deleteResource);
 
 export default router;
