@@ -29,7 +29,7 @@ const UserSchema = new Schema({
     type: String, 
     required: true,
     enum: ['admin', 'teacher', 'user'],
-    default: 'student'
+    default: 'user'
   }
 }, {
   timestamps: true
