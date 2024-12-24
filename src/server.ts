@@ -7,6 +7,7 @@ import gameRoutes from './routes/gameRoutes';
 import examRoutes from './routes/examRoutes';
 import authRoutes from './routes/authRoutes';
 import userRoutes from './routes/userRoutes';
+import aiRoutes from './routes/aiRoutes';
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ app.use('/api/resources', resourceRoutes);
 app.use('/api/games', gameRoutes);
 app.use('/api/exams', examRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/ai', aiRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
