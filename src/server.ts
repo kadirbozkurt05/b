@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 // Middleware for CORS
-const allowedOrigins = ['http://localhost:5173','https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--5173--fc837ba8.local-credentialless.webcontainer-api.io','https://esma-c.netlify.app','https://esmaogretmen.com'];
+const allowedOrigins = ['http://localhost:5173','https://adminpanel-assistant.netlify.app','https://esmaogretmen.com'];
 app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (like mobile apps or curl requests)
